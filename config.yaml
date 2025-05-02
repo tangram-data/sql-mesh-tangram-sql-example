@@ -14,9 +14,28 @@ gateways:
       host: localhost
       port: 9200
       user: tangram
-      password: <your-tangram-os-access-token>
+      password: <your tangram os access token>
 
-      # concurrent_tasks: 1
+
+  tangram_clickhouse:
+    state_connection:
+      type: duckdb
+      database: local.db
+    connection:
+      # For more information on configuring the connection to your execution engine, visit:
+      # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connections
+      # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/duckdb/#connection-options
+      type: tangramsql
+      database: clickhouse
+      catalog: clickhouse
+      engine_type: clickhouse
+      host: localhost
+      port: 9200
+      user: tangram
+      password: <your tangram os access token>
+
+
+    # concurrent_tasks: 1
       # register_comments: True
       # pre_ping: False
       # pretty_sql: False
@@ -27,9 +46,9 @@ gateways:
 
 
 default_gateway: tangram_duckdb
-environment_catalog_mapping:
-  '^prod$': iceberg
-  '^dev.*': iceberg
+gateway_managed_virtual_layer: true
+
+
 model_defaults:
-  dialect: spark
+  dialect: duckdb
   start: 2025-04-25
