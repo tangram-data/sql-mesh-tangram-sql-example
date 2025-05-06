@@ -1,4 +1,4 @@
--- View of 10 waiters with highest revenue on most recent day of data.
+-- ›10 waiters with highest revenue on most recent day of data.
 MODEL (
   name sushisimple.top_waiters,
   kind FULL,
