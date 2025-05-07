@@ -31,6 +31,8 @@ git pull --rebase tangram main
 python3 -m venv .env
 source .env/bin/activate
 
+pip3 install build
+
 # build the SQLMesh project with
 python3 -m build
 cd ..
@@ -47,13 +49,25 @@ pip3 install psycopg2
 
 pip3 install clickhouse-connect
 
-# install the created sqlmesh distribution from the above sql mesh build
+# install the created sqlmesh distribution from the above sql mesh build,
 
-pip3 install ~/sqlmesh_tangram_sql/sqlmesh/dist/sqlmesh-0.178.3.dev13.tar.gz
+pip3 install ~/sqlmesh_tangram_sql/sqlmesh/dist/sqlmesh-0.178.3.dev13.tar.gz # your local build generated distribution tar.gz might have a different name
 
 ```
 
+## Update SQLMesh `config.yaml` to configure the local Tangram OS access token.
+
+To show the current access token, you can use Tangram OS CLI and execute the following command
+
+```bash
+pat show
+```
+
+In `config.yaml` replace `#<Tangram OS local instance access token>` to the token from above command
+
 ## Run the example pipeline
+
+After setting up the connection token, you can now run `sqlmesh plan`
 
 ```bash
 sqlmesh plan

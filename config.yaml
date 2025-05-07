@@ -12,6 +12,7 @@ gateways:
       port: 9200 # Tangram SQL local instance port
       user: tangram
       password: #<Tangram OS local instance access token>
+
   tangram_clickhouse:
     state_connection: # sql mesh state using DuckDB for local demo only
       type: duckdb
