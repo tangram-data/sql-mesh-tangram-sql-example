@@ -1,35 +1,35 @@
 gateways:
   tangram_duckdb:
     state_connection:
-      type: duckdb
+      type: duckdb # sql mesh state using DuckDB for local demo only
       database: local.db
     connection:
-      # For more information on configuring the connection to your execution engine, visit:
-      # https://sqlmesh.readthedocs.io/en/stable/reference/configuration/#connections
-      # https://sqlmesh.readthedocs.io/en/stable/integrations/engines/duckdb/#connection-options
       type: tangramsql
       database: duckdb
       engine_type: duckdb
-      catalog: iceberg
-      host: localhost
-      port: 9200
+      catalog: iceberg # catalog set to iceberg, to write the data as Iceberg Tables or Iceberg Views
+      host: localhost # Tangram SQL local instance host
+      port: 9200 # Tangram SQL local instance port
       user: tangram
-      password: <your-tangram-os-access-token>
+      password: #<Tangram OS local instance access token>
 
-      # concurrent_tasks: 1
-      # register_comments: True
-      # pre_ping: False
-      # pretty_sql: False
-      # catalogs:
-      # extensions:
-      # connector_config:
-      # token:
-
+  tangram_clickhouse:
+    state_connection: # sql mesh state using DuckDB for local demo only
+      type: duckdb
+      database: local.db
+    connection:
+      type: tangramsql
+      database: clickhouse 
+      catalog: clickhouse # ClickHouse catalog in Tangram SQL, use this catalog to create model as ClickHouse Tables or Views
+      engine_type: clickhouse
+      host: localhost # Tangram SQL local instance host
+      port: 9200 # Tangram SQL local instance port
+      user: tangram
+      password: #<Tangram OS local instance access token>
 
 default_gateway: tangram_duckdb
-environment_catalog_mapping:
-  '^prod$': iceberg
-  '^dev.*': iceberg
+gateway_managed_virtual_layer: true
+
 model_defaults:
-  dialect: spark
+  dialect: duckdb
   start: 2025-04-25

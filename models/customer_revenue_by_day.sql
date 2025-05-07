@@ -1,7 +1,7 @@
--- View of revenue from customers by day.
+-- Revenue from customers by day.
 MODEL (
   name sushisimple.customer_revenue_by_day,
-  kind VIEW,
+  kind FULL,
   cron '@daily',
   grain (customer_id, ds),
 );
